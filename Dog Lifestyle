@@ -29,13 +29,13 @@ def welcome():
 # defines main code
 def main():
     layout = [
-        [sg.Text("How active are you on a daily basis?", font=("Arial", 15))],
+        [sg.Text("How active are you on a daily basis?", font=("Arial", 15))], #changed the question 
         [sg.Button("Very Active! I am constantly outside and going on adventures!"), sg.Button("Somewhat active! I spend some time hiking and exercising")],
         [sg.Button("Not very active! I go outside from time to time, but not much."), sg.Button("Not active! I don't like to leave my house ever.")]
     ]
-
+#created the options based on activity level
     # create the window
-    window = sg.Window("Dog Lifestyle", layout, size=(500,250), auto_size_buttons=True, element_justification='c')
+    window = sg.Window("Dog Lifestyle", layout, size=(500,250), auto_size_buttons=True, element_justification='c') #edited the window appearance
 
     while True:
         event, values = window.read()
@@ -59,7 +59,7 @@ def main():
             
     window.close()
 
-# defines response veryactive
+# defines response veryactive #edited the response action
 def veryactive():
     with open("VeryActive.csv") as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
@@ -88,7 +88,7 @@ def veryactive():
             break
     window.close()
 
-# defines response movie
+# defines response somewhatactive
 def drinks():
     with open("SomewhatActive.csv") as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
@@ -148,7 +148,7 @@ def notveryactive():
     window.close()
 
 
-# defines response surprise me
+# defines response notactive
 def notactive():
     layout = [
         [sg.Text("Not Active!")],
