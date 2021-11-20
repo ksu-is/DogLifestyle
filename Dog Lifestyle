@@ -118,7 +118,7 @@ def drinks():
             break
     window.close()
 
-# defines response adventure
+# defines response notveryactive
 def notveryactive():
     with open("NotVeryActive.csv") as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
@@ -148,7 +148,7 @@ def notveryactive():
     window.close()
 
 
-# defines response notactive
+# defines response notactive #will need to edit to be the same as the other responses (should not be random)
 def notactive():
     layout = [
         [sg.Text("Not Active!")],
