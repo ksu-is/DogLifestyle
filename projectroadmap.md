@@ -6,9 +6,9 @@ Sprint 1
 - [x] Explore python code and run
 
 Sprint 2
--[x] Make  updates to code
- -[x] Committed at least 6 code changes
--[x] Include comment explaining change
+- [x] Make  updates to code
+- [x] Committed at least 6 code changes
+- [x] Include comment explaining change
 
 Sprint 3
 -[x] 
