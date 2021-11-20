@@ -26,7 +26,7 @@ def welcome():
             main()
     window.close()
 
-# defines main code
+# defines main code #will need to edit window size to ensure text fits well
 def main():
     layout = [
         [sg.Text("How active are you on a daily basis?", font=("Arial", 15))], #changed the question 
