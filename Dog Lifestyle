@@ -1,6 +1,6 @@
 import sys
 import PySimpleGUI as sg
-import csv
+import csv #will need to figure out how to import csv?
 import random
 
 # defines main welcome screen
