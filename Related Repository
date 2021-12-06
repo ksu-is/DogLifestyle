@@ -1,1 +1,26 @@
-https://github.com/ksu-is/Virtual-Pet.git
+#Import library
+from tkinter import *
+#Define Function
+def sel():
+   select = "Option selected by you is the " + str(var.get())
+   label.config(text = select)
+#Define Buttons in GUI
+root = Tk()
+var = IntVar()
+#Button One
+R1 = Radiobutton(root, text="First Choice", variable=var, value=1,
+                  command=sel)
+R1.pack( anchor = W )
+#Button Two
+R2 = Radiobutton(root, text="Second Choice", variable=var, value=2,
+                  command=sel)
+R2.pack( anchor = W )
+#Button Three
+R3 = Radiobutton(root, text="Third Choice", variable=var, value=3,
+                  command=sel)
+R3.pack( anchor = W)
+#Labels
+label = Label(root)
+label.pack()
+root.mainloop()
+
