@@ -1,171 +1,28 @@
-import sys
-import PySimpleGUI as sg
-import csv #will need to figure out how to import csv?
-import random
-
-# defines main welcome screen
-def welcome():
-    layout = [
-        [sg.Text("Welcome to Dog Lifestyle!", font=("Arial", 25))],
-        [sg.Text('The best way to find out which dog breed is best for your lifestyle!', font=("Arial", 15))], #added information based on my requirements
-        [sg.Button('Click to begin!', size=(25))]
-    ]
-
-    # create the window
-    window = sg.Window("Dog Lifestyle!", layout, size=(500,250), element_justification='c')
-
-    #create a loop
-    while True:
-        event, values = window.read()
-        # End program if user closes window or
-        # move to main to begin 
-        if event ==sg.WIN_CLOSED:
-            break
-        elif event == 'Click to begin!':
-            window.close()
-            main()
-    window.close()
-
-# defines main code #will need to edit window size to ensure text fits well
-def main():
-    layout = [
-        [sg.Text("How active are you on a daily basis?", font=("Arial", 15))], #changed the question 
-        [sg.Button("Very Active! I am constantly outside and going on adventures!"), sg.Button("Somewhat active! I spend some time hiking and exercising")],
-        [sg.Button("Not very active! I go outside from time to time, but not much."), sg.Button("Not active! I don't like to leave my house ever.")]
-    ]
-#created the options based on activity level
-    # create the window
-    window = sg.Window("Dog Lifestyle", layout, size=(500,250), auto_size_buttons=True, element_justification='c') #edited the window appearance
-
-    while True:
-        event, values = window.read()
-        # End program if user closes window or
-        # move different response function 
-        if event == sg.WIN_CLOSED:
-             break
-        elif event == "Very Active! I am constantly outside and going on adventures!":
-        
-            window.close()
-            veryactive()
-        elif event == "Somewhat active! I spend some time hiking and exercising":
-            window.close()
-            somewhatactive()
-        elif event == "Not very active! I go outside from time to time, but not much.":
-            window.close()
-            notveryactive()
-        elif event == "Not active! I don't like to leave my house ever.":
-            window.close()
-            notactive()
-            
-    window.close()
-
-# defines response veryactive #edited the response action
-def veryactive():
-    with open("VeryActive.csv") as csv_file:
-        csv_reader = csv.reader(csv_file, delimiter=',')
-        for index, row in enumerate(csv_reader):
-            if index == 0:
-                chosen_row = row
-            else:
-                r = random.randint(0, index)
-                if r == 0:
-                    chosen_row = row
-        result_string = "I have selected {name}!\n This dog breed is suitable for your lifestyle. "
-        result_string = result_string.format(name=chosen_row[0], number=chosen_row[1], cost=chosen_row[2])
-
-    layout = [
-        [sg.Text("Very Active!")],
-        [sg.Text(result_string)]
-    ]
-
-    # create the window
-    window = sg.Window("Dog Lifestyle", layout, size=(500,250), element_justification='c')
-
-    while True:
-        event, values = window.read()
-        # End program if user closes window or
-        if event == sg.WIN_CLOSED:
-            break
-    window.close()
-
-# defines response somewhatactive
-def drinks():
-    with open("SomewhatActive.csv") as csv_file:
-        csv_reader = csv.reader(csv_file, delimiter=',')
-        for index, row in enumerate(csv_reader):
-            if index == 0:
-                chosen_row = row
-            else:
-                r = random.randint(0, index)
-                if r == 0:
-                    chosen_row = row
-        result_string = "I have selected {name}!\nThis dog breed is suitable for your lifestyle."
-        result_string = result_string.format(name=chosen_row[0], number=chosen_row[1], cost=chosen_row[2])
-        
-    layout = [
-        [sg.Text("Somewhat Active!")],
-        [sg.Text(result_string)]
-    ]
-
-    # create the window
-    window = sg.Window("Dog Lifestyle", layout, size=(500,250), element_justification='c')
-
-    while True:
-        event, values = window.read()
-        # End program if user closes window or
-        # presses OK
-        if event == sg.WIN_CLOSED:
-            break
-    window.close()
-
-# defines response notveryactive
-def notveryactive():
-    with open("NotVeryActive.csv") as csv_file:
-        csv_reader = csv.reader(csv_file, delimiter=',')
-        for index, row in enumerate(csv_reader):
-            if index == 0:
-                chosen_row = row
-            else:
-                r = random.randint(0, index)
-                if r == 0:
-                    chosen_row = row
-        result_string = "I have selected {name}!\nThis dog breed is suitable for your lifestyle."
-        result_string = result_string.format(name=chosen_row[0], number=chosen_row[1], cost=chosen_row[2])
-
-    layout = [
-        [sg.Text("Not Very Active!")],
-        [sg.Text(result_string)]
-    ]
-
-    # create the window
-    window = sg.Window("Dog Lifestyle", layout, size=(500,250), element_justification='c')
-
-    while True:
-        event, values = window.read()
-        # End program if user closes window
-        if event == sg.WIN_CLOSED:
-            break
-    window.close()
-
-
-# defines response notactive #will need to edit to be the same as the other responses (should not be random)
-def notactive():
-    layout = [
-        [sg.Text("Not Active!")],
-        [sg.Button("OK")]
-    ]
-
-    # create the window
-    window = sg.Window("Dog Lifestyle", layout, size=(500,250), element_justification='c')
-
-    while True:
-        event, values = window.read()
-        # End program if user closes window or
-        # presses OK
-        if event == "OK" or sg.WIN_CLOSED:
-            break
-    window.close()
-
-
-if __name__ == '__main__':
-    welcome()
+#Import library
+from tkinter import *
+#Define Function
+def sel():
+   select = "Based on your selection, I would recommend a  " + str(var.get())
+   label2.config(text = select)
+#Define Buttons in GUI
+root = Tk()
+var = StringVar()
+#Label 1
+label1=Label(root,text="This program will recommend a dog breed based on your lifestyle!\nPlease select your activity level:\n")
+label1.pack()
+#Button One
+R1 = Radiobutton(root, text="Very Active", variable=var, value="German Shephard",
+                  command=sel)
+R1.pack( anchor = W )
+#Button Two
+R2 = Radiobutton(root, text="Somewhat Active", variable=var, value="Golden Retriever",
+                  command=sel)
+R2.pack( anchor = W )
+#Button Three
+R3 = Radiobutton(root, text="Not Very Active", variable=var, value="Maltese",
+                  command=sel)
+R3.pack( anchor = W)
+#Label 2
+label2 = Label(root)
+label2.pack()
+root.mainloop()
